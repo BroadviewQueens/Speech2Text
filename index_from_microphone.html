@@ -301,20 +301,20 @@ function sentiment() {
 
 	var myHeader = new Headers({
 		"Content-Type": "application/json",
-		"Ocp-Apim-Subscription-Key": document.getElementById("txtsubscriptionKey").value 
+		"Ocp-Apim-Subscription-Key": "9780a035f7ab487aafda62e64acdd919" 
 		
 	});
-//"9780a035f7ab487aafda62e64acdd919"
+//document.getElementById("txtsubscriptionKey").value
 	var initObject = {
 		method: "POST",
 		body: JSON.stringify(reqBody),
 		headers: myHeader
 	};
 	var enpt = document.getElementById("txtsubscriptionKey").value;
-	var request = new Request(enpt,
+	var request = new Request("https://eastus.api.cognitive.microsoft.com/text/analytics/v2.1/sentiment?",
 		initObject
 	);
-//"https://eastus.api.cognitive.microsoft.com/text/analytics/v2.1/sentiment?"
+//
 	fetch(request)
 		.then(function (response) {
 			if (response.ok) {
