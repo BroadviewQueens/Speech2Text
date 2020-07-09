@@ -14,7 +14,7 @@
     <table width="100%">
       <tr>
         <td></td>
-        <td><h1 style="font-weight:500;">Microsoft Cognitive Services Speech SDK JavaScript Quickstart</h1></td>
+        <td><h1 style="font-weight:500;">Microsoft Cognitive Services Speech</h1></td>
       </tr>
       <tr>
         <td align="right"><a href="https://docs.microsoft.com/azure/cognitive-services/speech-service/get-started" target="_blank">Subscription</a>:</td>
@@ -31,6 +31,26 @@
       <tr>
         <td align="right" valign="top">Results</td>
         <td><textarea id="phraseDiv" style="display: inline-block;width:500px;height:200px"></textarea></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><h1 style="font-weight:500;">Microsoft Cognitive Services Text Analytics</h1></td>
+      </tr>
+      <tr>
+        <td align="right"><a href="https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/quickstarts/go-sdk" target="_blank">Subscription</a>:</td>
+        <td><input id="txtsubscriptionKey" type="text" size="40" placeholder="subscription key"></td>
+      </tr>
+      <tr>
+        <td align="right">Service End Point</td>
+        <td><input id="txtendpoint" type="text" size="40" placeholder="endpoint"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><button id="starttxtanalytics">Get Sentiment</button></td>
+      </tr>	  
+	  <tr>
+        <td align="right" valign="top">Sentiment</td>
+        <td><textarea id="sentDiv" style="display: inline-block;width:500px;height:100px"></textarea></td>
       </tr>
     </table>
   </div>
@@ -144,20 +164,31 @@
   // Note: Replace the URL with a valid endpoint to retrieve
   //       authorization tokens for your subscription.
 
+document.addEventListener("DOMContentLoaded", function () {
+txtsubscriptionKey = document.getElementById("txtsubscriptionKey");
+txtendpoint = document.getElementById("txtendpoint");
+serviceRegion = document.getElementById("serviceRegion");
+
+starttxtanalytics = document.getElementById("starttxtanalytics");
+phraseDiv = document.getElementById("phraseDiv");
+sentDiv = document.getElementById("sentDiv");
+
+starttxtanalytics.addEventListener("click", function () {
+        starttxtanalytics.disabled = true;
+        sentDiv.innerHTML = "";
+
 const { TextAnalyticsClient, TextAnalyticsApiKeyCredential } = require("@azure/ai-text-analytics");
 
-const key = '<paste-your-text-analytics-key-here>';
-const endpoint = `<paste-your-text-analytics-endpoint-here>`;
+const key = txtsubscriptionKey.innerHTML;
+const endpoint = txtendpoint.innerHTML;
 
 const textAnalyticsClient = new TextAnalyticsClient(endpoint,  new TextAnalyticsApiKeyCredential(key));
 
 async function sentimentAnalysis(client){
 
-    const sentimentInput = [
-        "I had the best day of my life. I wish you were there with me."
-    ];
+    sentimentInput = phraseDiv.innerHTML;
     const sentimentResult = await client.analyzeSentiment(sentimentInput);
-
+	sentDiv.innerHTML = sentimentResult;
     sentimentResult.forEach(document => {
         console.log(`ID: ${document.id}`);
         console.log(`\tDocument Sentiment: ${document.sentiment}`);
@@ -255,6 +286,7 @@ async function keyPhraseExtraction(client){
     });
 }
 keyPhraseExtraction(textAnalyticsClient);
+}
   </script>  
 </body>
 </html>
