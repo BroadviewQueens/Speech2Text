@@ -62,7 +62,7 @@
       </tr>
       <tr>
         <td align="right" valign="top">Results</td>
-        <td><textarea id="phraseDiv" style="display: inline-block;width:500px;height:200px"></textarea></td>
+        <td><textarea id="phraseDiv" style="display: inline-block;width:500px;height:100px"></textarea></td>
       </tr>
       <tr>
         <td></td>
@@ -301,19 +301,20 @@ function sentiment() {
 
 	var myHeader = new Headers({
 		"Content-Type": "application/json",
-		"Ocp-Apim-Subscription-Key": "9780a035f7ab487aafda62e64acdd919"
+		"Ocp-Apim-Subscription-Key": document.getElementById("txtsubscriptionKey").value 
+		
 	});
-
+//"9780a035f7ab487aafda62e64acdd919"
 	var initObject = {
 		method: "POST",
 		body: JSON.stringify(reqBody),
 		headers: myHeader
 	};
-
-	var request = new Request("https://eastus.api.cognitive.microsoft.com/text/analytics/v2.1/sentiment?",
+	var enpt = document.getElementById("txtsubscriptionKey").value;
+	var request = new Request(enpt,
 		initObject
 	);
-
+//"https://eastus.api.cognitive.microsoft.com/text/analytics/v2.1/sentiment?"
 	fetch(request)
 		.then(function (response) {
 			if (response.ok) {
@@ -324,10 +325,7 @@ function sentiment() {
 		})
 		.then(function (response) {
 			var sentiment = response.documents[0].score;
-			document.getElementById("sentDiv").innerHTML =
-				"<h5>" +
-				sentiment +
-				"</h5>"
+			document.getElementById("sentDiv").innerHTML = sentiment
 		})
 		.catch(function (err) {
 			alert(err);
