@@ -3,8 +3,6 @@
 <head>
   <title>Microsoft Cognitive Services Speech SDK JavaScript Quickstart</title>
   <meta charset="utf-8" />
-</head>
-<body style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:13px;">
 <script>
   // Note: Replace the URL with a valid endpoint to retrieve
   //       authorization tokens for your subscription.
@@ -13,8 +11,36 @@
      alert("hello");
      //validation code to see State field is mandatory.  
     }     
+	function sentimentAnalysis(){
+		const { TextAnalyticsClient, TextAnalyticsApiKeyCredential } = require("@azure/ai-text-analytics");
 
-</script>  
+		const key = '9780a035f7ab487aafda62e64acdd919';
+		const endpoint = 'https://s2tanalytics.cognitiveservices.azure.com/';
+
+		const textAnalyticsClient = new TextAnalyticsClient(endpoint,  new TextAnalyticsApiKeyCredential(key));
+		alert('test the sentiment');
+	   // const sentimentInput = ["I had the best day of my life. I wish you were there with me." ];
+		//const sentimentInput = result.text;
+		const sentimentResult = await textAnalyticsClient.analyzeSentiment(sentimentInput);
+		sentDiv.innerHTML = sentimentResult;
+
+		sentimentResult.forEach(document => {
+			console.log(`ID: ${document.id}`);
+			console.log(`\tDocument Sentiment: ${document.sentiment}`);
+			console.log(`\tDocument Scores:`);
+			console.log(`\t\tPositive: ${document.confidenceScores.positive.toFixed(2)} \tNegative: ${document.confidenceScores.negative.toFixed(2)} \tNeutral: ${document.confidenceScores.neutral.toFixed(2)}`);
+			console.log(`\tSentences Sentiment(${document.sentences.length}):`);
+			document.sentences.forEach(sentence => {
+				console.log(`\t\tSentence sentiment: ${sentence.sentiment}`)
+				console.log(`\t\tSentences Scores:`);
+				console.log(`\t\tPositive: ${sentence.confidenceScores.positive.toFixed(2)} \tNegative: ${sentence.confidenceScores.negative.toFixed(2)} \tNeutral: ${sentence.confidenceScores.neutral.toFixed(2)}`);
+			});
+		});
+}
+</script>
+</head>
+<body style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:13px;">
+  
   <!-- <uidiv> -->
   <div id="warning">
     <h1 style="font-weight:500;">Speech Recognition Speech SDK not found (microsoft.cognitiveservices.speech.sdk.bundle.js missing).</h1>
@@ -56,7 +82,7 @@
       </tr>
       <tr>
         <td></td>
-        <td><button id="starttxtanalytics">Get Sentiment</button></td>
+        <td><button id="starttxtanalytics" onclick="sentimentAnalysis()">Get Sentiment</button></td>
       </tr>	  
 	  <tr>
         <td align="right" valign="top">Sentiment</td>
