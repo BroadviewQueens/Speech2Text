@@ -21,8 +21,8 @@
 
 		const textAnalyticsClient = new TextAnalyticsClient(endpoint,  new TextAnalyticsApiKeyCredential(key));
 		alert('test the sentiment');
-	   // const sentimentInput = ["I had the best day of my life. I wish you were there with me." ];
-		sentimentInput = result.text;
+	    const sentimentInput = ["I had the best day of my life. I wish you were there with me." ];
+		//const sentimentInput = result.text;
 		const sentimentResult = await textAnalyticsClient.analyzeSentiment(sentimentInput);
 		sentDiv.innerHTML = sentimentResult;
 
@@ -39,8 +39,7 @@
 			});
 		});
 }
-
-  </script>  
+</script>  
   <!-- <uidiv> -->
   <div id="warning">
     <h1 style="font-weight:500;">Speech Recognition Speech SDK not found (microsoft.cognitiveservices.speech.sdk.bundle.js missing).</h1>
