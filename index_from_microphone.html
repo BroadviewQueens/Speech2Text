@@ -100,7 +100,7 @@
     var SpeechSDK;
     var recognizer;
 
-    document.addEventListener("DOMContentLoaded", function () {
+  //  document.addEventListener("DOMContentLoaded", function () {
       startRecognizeOnceAsyncButton = document.getElementById("startRecognizeOnceAsyncButton");
       subscriptionKey = document.getElementById("subscriptionKey");
       serviceRegion = document.getElementById("serviceRegion");
@@ -163,19 +163,21 @@
  <script>
   // Note: Replace the URL with a valid endpoint to retrieve
   //       authorization tokens for your subscription.
+var txtsubscriptionKey, txtendpoint, serviceRegion, phraseDiv, sentDiv;
 
 document.addEventListener("DOMContentLoaded", function () {
 txtsubscriptionKey = document.getElementById("txtsubscriptionKey");
 txtendpoint = document.getElementById("txtendpoint");
 serviceRegion = document.getElementById("serviceRegion");
-alert(txtsubscriptionKey.innerHTML);
+
 
 starttxtanalytics = document.getElementById("starttxtanalytics");
 phraseDiv = document.getElementById("phraseDiv");
 sentDiv = document.getElementById("sentDiv");
 
 starttxtanalytics.addEventListener("click", function () {
-        starttxtanalytics.disabled = true;
+        //starttxtanalytics.disabled = true;
+		alert(txtsubscriptionKey.innerHTML);
         sentDiv.innerHTML = "sss";
 
 const { TextAnalyticsClient, TextAnalyticsApiKeyCredential } = require("@azure/ai-text-analytics");
@@ -287,7 +289,7 @@ async function keyPhraseExtraction(client){
     });
 }
 keyPhraseExtraction(textAnalyticsClient);
-}
+//}
   </script>  
 </body>
 </html>
