@@ -197,8 +197,8 @@
  document.getElementById("starttxtanalytics").addEventListener("click", analyze);
 
 function analyze() {
-	keyPhrases();
-	language();
+//	keyPhrases();
+//	language();
 	sentiment();
 }
 
@@ -324,14 +324,14 @@ function sentiment() {
 		})
 		.then(function (response) {
 			var sentiment = response.documents[0].score;
-			document.getElementById("sentiment").innerHTML =
+			document.getElementById("sentDiv").innerHTML =
 				"<h5>" +
 				sentiment +
 				"</h5>"
 		})
 		.catch(function (err) {
 			alert(err);
-			document.getElementById("sentiment").innerHTML = "Error";
+			document.getElementById("sentDiv").innerHTML = "Error";
 		});
 }
 
