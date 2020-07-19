@@ -33,7 +33,8 @@ Step10:
 Stepup GitHub Repository and Sync it with Local folder on your computer.
 
 Step 11:
-Copy index_from_microphone.html, microsoft.cognitiveservices.speech.sdk.bundle.js, token.php from https://github.com/BroadviewQueens/Speech2Text to the local folder used in the previous step
+Copy index_from_microphone.html, microsoft.cognitiveservices.speech.sdk.bundle.js, token.php from https://github.com/BroadviewQueens/Speech2Text to the local folder used in the previous step.
+Update the key for Speech2Text and Text Analytics at the appropriate places. Save the file.
 
 Step 12:
 Open GitHub Desktop and commit the changes, push the local commit by clicking "Push origin"
