@@ -1,3 +1,7 @@
+Azure Subscription for student:
+
+Activate here -https://azure.microsoft.com/en-us/free/students/
+
 Step1:
 In the Azure Portal, create resource group
 
