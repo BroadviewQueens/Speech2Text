@@ -12,7 +12,7 @@ Step3:
 Wait until it says "Your deployment is complete", then click "Go to resource"
 
 Step4:
-Copy the Key, region from the "Key and Endpoint" section. Copy it into a notepad for following steps.
+Copy the Key, region from the "Key and Endpoint" section. Copy it into a notepad for use in later steps.
 
 Step5:
 Click on “Create Resource” then search click “Text Analytics” and create the resource using free price tier under the same resource group created in the preious step.
